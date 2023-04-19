@@ -6,9 +6,8 @@ import { COLORS } from '../../constants';
 import VisuallyHidden from '../VisuallyHidden';
 
 const ProgressBar = ({ value, size }) => {
-  const styles = value === 100 ? { 'border-radius': 4 + 'px' } : {};
-
   let Component;
+
   if (size === 'large') {
     Component = LargeOuterBar;
   } else if (size === 'medium') {
@@ -28,7 +27,7 @@ const ProgressBar = ({ value, size }) => {
         aria-valuemax='100'
       >
         <VisuallyHidden>{value}%</VisuallyHidden>
-        <Inner value={value} style={styles} />
+        <Inner value={value}/>
       </Component>
     </>
   );
@@ -40,11 +39,12 @@ const OuterBase = styled.div`
   background-color: ${COLORS.transparentGray15};
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
   border-radius: 4px;
+  overflow: hidden;
 `;
 
 const LargeOuterBar = styled(OuterBase)`
   height: 24px;
-  padding: Outer4px;
+  padding: 4px;
   border-radius: 8px;
 `;
 const MediumOuterBar = styled(OuterBase)`
